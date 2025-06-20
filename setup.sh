@@ -27,9 +27,9 @@ chmod a-w $HOME/.bash
 # ~/.path
 ########################################
 
-chmod a+w $HOME/.path 2> /dev/null || true
-cp path $HOME/.path
-chmod a-w $HOME/.path
+if [ ! -f "$HOME/.path" ]; then
+    cp path $HOME/.path
+fi
 
 
 ########################################

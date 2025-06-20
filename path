@@ -1,8 +1,13 @@
+###########################################
+# $PATH is set to the list of directories #
+# See ~/projects/dots/bash/path.sh        #
+###########################################
+
 /home/vircodificat/.local/bin
 /home/vircodificat/.local/neovim/bin
 /home/vircodificat/.cargo/bin
+
 /usr/sbin
 /usr/bin
 /sbin
 /bin
-/snap/bin
