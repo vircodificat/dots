@@ -21,6 +21,15 @@ chmod a-w $HOME/.bash
 
 
 ########################################
+# ~/.path
+########################################
+
+chmod a+w $HOME/.path 2> /dev/null || true
+cp path $HOME/.path
+chmod a-w $HOME/.path
+
+
+########################################
 # ~/.gitconfig
 ########################################
 
@@ -36,6 +45,15 @@ chmod a-w $HOME/.gitconfig
 chmod a+w $HOME/.tmux.conf 2> /dev/null || true
 cp tmux.conf $HOME/.tmux.conf
 chmod a-w $HOME/.tmux.conf
+
+
+########################################
+# ~/.inputrc
+########################################
+
+chmod a+w $HOME/.inputrc 2> /dev/null || true
+cp inputrc $HOME/.inputrc
+chmod a-w $HOME/.inputrc
 
 
 echo "Done"

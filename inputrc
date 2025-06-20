@@ -1,0 +1,4 @@
+# ~/.inputrc is the configuration file for GNU Readline.
+
+# Ensures symlinked dirs get / during tab-completion
+set mark-symlinked-directories on
