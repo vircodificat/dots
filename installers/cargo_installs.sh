@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 cargo install cargo-binstall --version 1.13.0
 
 cargo binstall fd-find      -y --version 10.2.0
@@ -9,3 +11,4 @@ cargo binstall exa          -y --version 0.10.1
 cargo binstall du-dust      -y --version 1.2.1
 cargo binstall tokei        -y --version 12.1.2
 cargo binstall hexyl        -y --version 0.16.0
+cargo binstall jj-cli       -y --version 0.30.0
