@@ -6,7 +6,7 @@ source $HOME/.bash/path.sh
 for file in $HOME/.bash/*
 do
     if [ -f $file ]; then
-        if [[ "$file" != "$HOME/.bash/local" && "$file" != "$HOME/.bash/path.sh" ]]; then
+        if [[ "$file" != "$HOME/.bash/path.sh" ]]; then
             if [[ "$DEBUG_BASHRC" == "1" ]]; then
                 echo "$file"
             fi
@@ -16,9 +16,9 @@ do
     fi
 done
 
-if test -f "$HOME/.bash/local"
+if test -f "$HOME/.bash_local"
 then
-    source "$HOME/.bash/local"
+    source "$HOME/.bash_local"
 fi
 
 ###################################################
