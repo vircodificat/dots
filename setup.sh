@@ -56,4 +56,16 @@ cp inputrc $HOME/.inputrc
 chmod a-w $HOME/.inputrc
 
 
+########################################
+# Home directory cleanup
+########################################
+
+rm -r $HOME/Documents 2> /dev/null || true
+rm -r $HOME/Pictures  2> /dev/null || true
+rm -r $HOME/Public    2> /dev/null || true
+rm -r $HOME/Videos    2> /dev/null || true
+rm -r $HOME/Templates 2> /dev/null || true
+rm -r $HOME/Music     2> /dev/null || true
+
+
 echo "Done"
