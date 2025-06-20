@@ -20,7 +20,3 @@ if test -f "$HOME/.bash_local"
 then
     source "$HOME/.bash_local"
 fi
-
-###################################################
-# AGGRESSIVELY DELETE ANYTHING BELOW THIS COMMENT #
-###################################################
