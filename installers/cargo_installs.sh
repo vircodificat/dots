@@ -11,4 +11,5 @@ cargo binstall exa          -y --version 0.10.1
 cargo binstall du-dust      -y --version 1.2.1
 cargo binstall tokei        -y --version 12.1.2
 cargo binstall hexyl        -y --version 0.16.0
+cargo binstall dfrs         -y --version 0.0.7
 cargo binstall jj-cli       -y --version 0.30.0

@@ -2,6 +2,7 @@ alias reload='source $HOME/.bashrc'
 alias vi='nvim'
 alias vim='nvim'
 alias ls='exa --color=auto'
+alias df='dfrs'
 
 function path() {
     for p in $(echo $PATH | sed 's/:/ /g')
