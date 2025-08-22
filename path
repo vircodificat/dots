@@ -6,7 +6,8 @@
 /home/vircodificat/.cargo/bin
 /home/vircodificat/.local/bin
 /home/vircodificat/.local/neovim/bin
-#/home/vircodificat/.local/pyenv/bin
+/home/vircodificat/.local/llvm/bin
+/home/vircodificat/.local/zig
 #/home/vircodificat/.local/wasmtime/bin
 
 /usr/sbin
