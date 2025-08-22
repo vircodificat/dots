@@ -2,10 +2,10 @@
 
 set -ex
 
-include_zls=1
-version="0.14.0"
+include_zls=0
+version="0.15.1"
 
-download_url="https://ziglang.org/download/${version}/zig-linux-x86_64-0.14.0.tar.xz"
+download_url="https://ziglang.org/download/${version}/zig-x86_64-linux-${version}.tar.xz"
 
 mkdir -p /tmp/zig
 cd /tmp/zig
