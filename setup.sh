@@ -36,6 +36,7 @@ fi
 # ~/.gitconfig
 ########################################
 
+touch $HOME/.gitconfig
 chmod a+w $HOME/.gitconfig
 cp gitconfig $HOME/.gitconfig
 chmod a-w $HOME/.gitconfig
