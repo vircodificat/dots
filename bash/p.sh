@@ -16,7 +16,8 @@ function p() {
 _p_completion()
 {
     CURRENT_WORD=${COMP_WORDS[$COMP_CWORD]}
-    projects=$(ls -1 "$HOME/projects")
+    projects=$(/bin/ls "$HOME/projects")
+    projects_array=($projects)
     COMPREPLY=( $(compgen -W "$projects" "$CURRENT_WORD") )
 }
 
