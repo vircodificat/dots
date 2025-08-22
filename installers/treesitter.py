@@ -1,48 +1,53 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-set -e
+import sys
+import os
+import subprocess
+from pathlib import Path
+import glob
+import shutil
 
-mapfile -t languages <<EOF
-    firrtl
-    zig
-EOF
+grammars = {
+    'zig':  'https://github.com/tree-sitter-grammars/tree-sitter-zig',
+    'rust':  'https://github.com/tree-sitter/tree-sitter-rust',
+    'python':  'https://github.com/tree-sitter/tree-sitter-python',
+    'javascript':  'https://github.com/tree-sitter/tree-sitter-python',
+}
 
-sos=()
-wasms=()
+outputs = []
 
-mkdir -p $PROJECTS/treesitter
-cd $PROJECTS/treesitter
+PROJECTS = os.environ['PROJECTS']
 
-for language in ${languages[@]}; do
-    echo "Building $language"
-    if [[ ! -d tree-sitter-$language ]]; then
-        git clone "https://github.com/tree-sitter-grammars/tree-sitter-$language"
-    fi
-    cd "tree-sitter-$language"
-    if tree-sitter generate && tree-sitter build && tree-sitter build -w; then
-        so=$(realpath "$language.so")
-        sos+=($so)
+treesitter_dir = Path(f'{PROJECTS}/treesitter')
+subprocess.run(['mkdir', '-p', str(treesitter_dir)])
+os.chdir(treesitter_dir)
 
-        wasm=$(realpath $(ls -1 *.wasm))
-        wasms+=($wasm)
-    else
-        echo "(failed)"
-    fi
-    cd ..
-done
+for language, repo_url in grammars.items():
+    print("Building", language)
 
-mkdir -p build
+    language_dir = Path(f'{PROJECTS}/treesitter/{language}')
+    if not language_dir.exists():
+        subprocess.run(['git', 'clone', repo_url, language])
+    os.chdir(language_dir)
 
-for so in ${sos[@]}; do
-    cp $so build
-done
+    try:
+        subprocess.run(['git', 'clean', '-xdf'])
+        subprocess.run(['tree-sitter', 'generate'])
+        subprocess.run(['tree-sitter', 'build', '-o', f'{language}.so'])
+        subprocess.run(['tree-sitter', 'build', '-w', '-o', f'{language}.wasm'])
 
-for wasm in ${wasms[@]}; do
-    cp $wasm build
-done
+    except:
+        print("Failed", file=sys.stderr)
 
-echo
-echo "Finished:"
-for f in $(ls build); do
-    echo $(realpath build/$f)
-done
+    for output in glob.glob('*.so'):
+        outputs.append(Path(output).absolute())
+
+    for output in glob.glob('*.wasm'):
+        outputs.append(Path(output).absolute())
+
+    os.chdir(treesitter_dir)
+
+subprocess.run(['mkdir', '-p', 'build'])
+
+for output in outputs:
+    shutil.copy(output, 'build/')
