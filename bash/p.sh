@@ -11,6 +11,18 @@ function p() {
         # delete only if a symlink
         find "$HOME/projects/$2" -type l -delete && \
             echo "Removed $HOME/projects/$2"
+    elif [[ "$1" == "-u" ]]; then
+        echo "Updating repos in $REPOS"
+        for f in $(find $REPOS -type d); do
+            if [ -d "$f/.git" ]; then
+                echo "$f"
+                if [[ $(git -C "$f" rev-parse --is-shallow-repository) == "true" ]]; then
+                    git -C "$f" fetch --depth=1
+                else
+                    git -C "$f" fetch
+                fi
+            fi
+        done
     elif [ -n "$TMUX" ]; then
         cd "$HOME/projects/$1" && \
             tmux rename-window "$1"
