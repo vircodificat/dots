@@ -8,6 +8,8 @@
 [alias]
     graph = log --graph --decorate
     undo = reset --soft HEAD~
+    cp = cherry-pick
+    co = checkout
 
 [apply]
     whitespace = nowarn
