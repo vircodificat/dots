@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 commit="v5.038"
 
 prefix="$HOME/.local/verilator"
@@ -9,7 +11,7 @@ if [ ! -d $REPOS/verilator ]; then
 fi
 
 cd $REPOS/verilator
-git fetch $commit
+git fetch
 git checkout $commit
 autoconf
 ./configure --prefix=$prefix
