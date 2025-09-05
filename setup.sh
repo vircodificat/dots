@@ -20,7 +20,9 @@ cp -r bash $HOME/.bash
 for f in $(ls -1 $HOME/.bash); do
     chmod a-w "$HOME/.bash/$f"
 done
+touch $HOME/.bash/local
 chmod a-w $HOME/.bash
+chmod u+w $HOME/.bash/local
 
 
 ########################################
